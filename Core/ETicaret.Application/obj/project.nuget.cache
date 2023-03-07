@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "ndAIkh0GedBvlFEGcKhi9kj2zEUPF2kjXtD6lanYRDusA9gyUT+MTUkQiurXQesp3Id2jhAsGXO21JiqOw2PNg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Core\\ETicaret.Application\\ETicaret.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.8.0.0-preview.1.23111.4.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.abstractions.8.0.0-preview.1.23111.4.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.analyzers.8.0.0-preview.1.23111.4.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.caching.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0-preview.1.23110.8\\microsoft.extensions.caching.memory.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0-preview.1.23110.8\\microsoft.extensions.dependencyinjection.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0-preview.1.23110.8\\microsoft.extensions.logging.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.logging.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.options\\8.0.0-preview.1.23110.8\\microsoft.extensions.options.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0-preview.1.23110.8\\microsoft.extensions.primitives.8.0.0-preview.1.23110.8.nupkg.sha512"
+  ],
+  "logs": []
+}

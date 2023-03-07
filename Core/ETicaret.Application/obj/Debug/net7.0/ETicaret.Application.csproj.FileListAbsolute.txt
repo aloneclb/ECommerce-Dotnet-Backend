@@ -1,0 +1,15 @@
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\bin\Debug\net7.0\ETicaret.Application.deps.json
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\bin\Debug\net7.0\ETicaret.Application.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\bin\Debug\net7.0\ETicaret.Application.pdb
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\bin\Debug\net7.0\ETicaret.Domain.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\bin\Debug\net7.0\ETicaret.Domain.pdb
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.csproj.AssemblyReference.cache
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.AssemblyInfoInputs.cache
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.AssemblyInfo.cs
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.csproj.CoreCompileInputs.cache
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.csproj.CopyComplete
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\refint\ETicaret.Application.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ETicaret.Application.pdb
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Core\ETicaret.Application\obj\Debug\net7.0\ref\ETicaret.Application.dll
