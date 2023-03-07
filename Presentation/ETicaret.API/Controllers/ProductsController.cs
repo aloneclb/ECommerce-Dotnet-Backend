@@ -27,7 +27,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery]ProductListRequest request)
+    public async Task<IActionResult> Get([FromQuery] ProductListRequest request)
     {
         // var customer = await _customerReadRepository.GetByIdAsync(new Guid("370a3f54-56e8-4cd2-d2f4-08db18641380"));
         // customer.Name = "asdasd";
@@ -71,7 +71,7 @@ public class ProductsController : ControllerBase
         //     .ToListAsync();
 
         var totalCount = _productReadRepository.GetWhere(x => true).Count();
-            
+
         return Ok(new
         {
             totalCount,
@@ -82,11 +82,6 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(ProductCreateRequest request)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest();
-        }
-
         var product = new Product()
         {
             Name = request.Name,
