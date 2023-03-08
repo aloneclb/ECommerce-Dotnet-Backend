@@ -93,4 +93,17 @@ public class ProductsController : ControllerBase
 
         return result ? Ok() : BadRequest();
     }
+
+    [HttpDelete]
+    [Route("{id:required}")]
+    public async Task<IActionResult> Remove(Guid id)
+    {
+        var entity = await _productReadRepository.GetByIdAsync(id);
+        if (entity == null)
+            return BadRequest("Bulunamadı");
+        
+        var result = _productWriteRepository.Remove(entity);
+        await _productWriteRepository.SaveChanges();
+        return result ? Ok() : BadRequest();
+    }
 }
