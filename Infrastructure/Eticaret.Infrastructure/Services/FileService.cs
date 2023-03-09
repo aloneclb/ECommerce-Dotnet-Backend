@@ -1,4 +1,5 @@
 ﻿using ETicaret.Application.Services;
+using Eticaret.Infrastructure.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
@@ -6,6 +7,8 @@ namespace Eticaret.Infrastructure.Services;
 
 public class FileService : IFileService
 {
+    // Todo: Log
+    // Todo: Servisi uyarıcı exception mekanizması
     private readonly IWebHostEnvironment _webHostEnvironment;
 
     public FileService(IWebHostEnvironment webHostEnvironment)
@@ -19,20 +22,18 @@ public class FileService : IFileService
     // private const string ArticleImagesFolder = "article-images";
     // private const string UserImagesFolder = "user-images";
 
-    public async Task<string> Upload(string name, IFormFile imageFile)
+    public async Task<string> UploadAsync(string name, IFormFile imageFile)
     {
+        // var oldFileName = Path.GetFileNameWithoutExtension(imageFile.FileName); // Yüklenen Dosyanın Adı
+        // var newFileName = $"{name}_{Guid.NewGuid().ToString()}{fileExtensions}"; // Guid de kullanılabilir.
         var fullPath = $"{wwwroot}/{ImgFolder}/example";
 
         // Resimlerin Kaydedileceği dosya yok ise oluşturuyoruz.
         if (!Directory.Exists(fullPath))
             Directory.CreateDirectory(fullPath);
-
-        var oldFileName = Path.GetFileNameWithoutExtension(imageFile.FileName); // Yüklenen Dosyanın Adı
         var fileExtensions = Path.GetExtension(imageFile.FileName); // Yüklenen Dosyanın Türü
 
-        name = ReplaceInvalidChars(name); // Dosya adını türkçeden ingilizceye çeviriyoruz
-        var newFileName = $"{name}_{Guid.NewGuid().ToString()}{fileExtensions}"; // Guid de kullanılabilir.
-        var pathAndName = Path.Combine(fullPath, newFileName);
+        var pathAndName = await FileRenameAsync(fullPath, name, fileExtensions);
 
         await using var stream = new FileStream(pathAndName, FileMode.Create, FileAccess.Write, FileShare.None,
             1024 * 1024, false);
@@ -42,62 +43,47 @@ public class FileService : IFileService
         return pathAndName;
     }
 
+    private async Task<string> FileRenameAsync(string filePath, string fileName, string extension)
+    {
+        // Example  wwwroot/example  /  filename   /  extension
+        //          file path           filename      extension
+        
+        var newFileFullPath = await Task.Run<string>(async () =>
+        {
+            var newFileName = NameChanger.ReplaceInvalidChars(fileName); // urunismi
+            var newFilePath = Path.Combine(filePath, newFileName); // wwwroot/example/urunismi
+            var newFileFullPath = $"{newFilePath}{extension}"; // wwwroot/example/urunismi.jpg
+            var imageCount = 0;
+            
+            while (File.Exists(newFileFullPath))
+            {
+                imageCount += 1;
+                newFileFullPath = await Examp(filePath, fileName + imageCount.ToString(), extension);
+            }
+
+            return newFileFullPath;
+        });
+        
+        return newFileFullPath;
+    }
+
+    private async Task<string> Examp(string filePath, string fileName, string extension)
+    {
+        var deneme = await Task.Run<string>(async () =>
+        {
+            var newFileName = NameChanger.ReplaceInvalidChars(fileName); // urunismi
+            var newFilePath = Path.Combine(filePath, newFileName); // wwwroot/example/urunismi
+            var newFileFullPath = $"{newFilePath}{extension}"; // wwwroot/example/urunismi.jpg
+            return newFileFullPath;
+        });
+        return deneme;
+    }
+
+
     public void Delete(string imageName)
     {
         var path = Path.Combine($"{wwwroot}/{ImgFolder}/{imageName}");
         if (File.Exists(path))
             File.Delete(path);
-    }
-
-    private string ReplaceInvalidChars(string fileName)
-    {
-        return fileName.Replace("İ", "I")
-            .Replace("ı", "i")
-            .Replace("Ğ", "G")
-            .Replace("ğ", "g")
-            .Replace("Ü", "U")
-            .Replace("ü", "u")
-            .Replace("ş", "s")
-            .Replace("Ş", "S")
-            .Replace("Ö", "O")
-            .Replace("ö", "o")
-            .Replace("Ç", "C")
-            .Replace("ç", "c")
-            .Replace("é", "")
-            .Replace("!", "")
-            .Replace("'", "")
-            .Replace("^", "")
-            .Replace("+", "")
-            .Replace("%", "")
-            .Replace("/", "")
-            .Replace("(", "")
-            .Replace(")", "")
-            .Replace("=", "")
-            .Replace("?", "")
-            .Replace("_", "")
-            .Replace("*", "")
-            .Replace("æ", "")
-            .Replace("ß", "")
-            .Replace("@", "")
-            .Replace("€", "")
-            .Replace("<", "")
-            .Replace(">", "")
-            .Replace("#", "")
-            .Replace("$", "")
-            .Replace("½", "")
-            .Replace("{", "")
-            .Replace("[", "")
-            .Replace("]", "")
-            .Replace("}", "")
-            .Replace(@"\", "")
-            .Replace("|", "")
-            .Replace("~", "")
-            .Replace("¨", "")
-            .Replace(",", "")
-            .Replace(";", "")
-            .Replace("`", "")
-            .Replace(".", "")
-            .Replace(":", "")
-            .Replace(" ", "");
     }
 }

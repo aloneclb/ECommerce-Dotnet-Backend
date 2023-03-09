@@ -117,7 +117,7 @@ public class ProductsController : ControllerBase
     {
         foreach (var image in images)
         {
-            var pathname = await _imageService.Upload("deneme", image);
+            var pathname = await _imageService.UploadAsync("deneme", image);
             Console.WriteLine(pathname);
         }
         return Ok("ok");
