@@ -24,7 +24,13 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Core\ETicaret.Application\ETicaret.Application.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Eticaret.Infrastructure\Eticaret.Infrastructure.csproj" />
       <ProjectReference Include="..\..\Infrastructure\ETicaret.Persistence\ETicaret.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot" />
+      <Folder Include="wwwroot\images\example" />
     </ItemGroup>
 
 </Project>

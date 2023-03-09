@@ -101,3 +101,6 @@ C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.AP
 C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\ETicaret.API.staticwebassets.runtime.json
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\Eticaret.Infrastructure.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\Eticaret.Infrastructure.pdb

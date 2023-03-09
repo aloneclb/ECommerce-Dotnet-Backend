@@ -1,4 +1,5 @@
-﻿using ETicaret.Application.Dtos.Product;
+﻿using ETicaret.Application.Abstractions;
+using ETicaret.Application.Dtos.Product;
 using ETicaret.Application.Repositories.Customer;
 using ETicaret.Application.Repositories.Product;
 using ETicaret.Domain.Entities;
@@ -15,15 +16,17 @@ public class ProductsController : ControllerBase
     private readonly ICustomerWriteRepository _customerWriteRepository;
     private readonly IProductWriteRepository _productWriteRepository;
     private readonly IProductReadRepository _productReadRepository;
+    private readonly IImageService _imageService;
 
     public ProductsController(ICustomerReadRepository customerReadRepository,
         ICustomerWriteRepository customerWriteRepository, IProductWriteRepository productWriteRepository,
-        IProductReadRepository productReadRepository)
+        IProductReadRepository productReadRepository, IImageService imageService)
     {
         _customerReadRepository = customerReadRepository;
         _customerWriteRepository = customerWriteRepository;
         _productWriteRepository = productWriteRepository;
         _productReadRepository = productReadRepository;
+        _imageService = imageService;
     }
 
     [HttpGet]
@@ -53,6 +56,7 @@ public class ProductsController : ControllerBase
                 p.CreatedAt,
                 p.UpdatedAt,
             })
+            .OrderBy(x => x.Name)
             .Skip(request.Page * request.PageSize)
             .Take(request.PageSize)
             .ToListAsync();
@@ -101,9 +105,21 @@ public class ProductsController : ControllerBase
         var entity = await _productReadRepository.GetByIdAsync(id);
         if (entity == null)
             return BadRequest("Bulunamadı");
-        
+
         var result = _productWriteRepository.Remove(entity);
         await _productWriteRepository.SaveChanges();
         return result ? Ok() : BadRequest();
+    }
+
+    [HttpPost]
+    [Route("upload")]
+    public async Task<IActionResult> Upload(List<IFormFile> images)
+    {
+        foreach (var image in images)
+        {
+            var pathname = await _imageService.Upload("deneme", image);
+            Console.WriteLine(pathname);
+        }
+        return Ok("ok");
     }
 }

@@ -1345,6 +1345,19 @@
           "bin/placeholder/ETicaret.Domain.dll": {}
         }
       },
+      "Eticaret.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ETicaret.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Eticaret.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Eticaret.Infrastructure.dll": {}
+        }
+      },
       "ETicaret.Persistence/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -3772,6 +3785,11 @@
       "path": "../../Core/ETicaret.Domain/ETicaret.Domain.csproj",
       "msbuildProject": "../../Core/ETicaret.Domain/ETicaret.Domain.csproj"
     },
+    "Eticaret.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../../Infrastructure/Eticaret.Infrastructure/Eticaret.Infrastructure.csproj",
+      "msbuildProject": "../../Infrastructure/Eticaret.Infrastructure/Eticaret.Infrastructure.csproj"
+    },
     "ETicaret.Persistence/1.0.0": {
       "type": "project",
       "path": "../../Infrastructure/ETicaret.Persistence/ETicaret.Persistence.csproj",
@@ -3782,6 +3800,7 @@
     "net7.0": [
       "ETicaret.Application >= 1.0.0",
       "ETicaret.Persistence >= 1.0.0",
+      "Eticaret.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.0-preview.1.23111.4",
       "Swashbuckle.AspNetCore >= 6.4.0"
@@ -3814,6 +3833,9 @@
           "projectReferences": {
             "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Core\\ETicaret.Application\\ETicaret.Application.csproj": {
               "projectPath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Core\\ETicaret.Application\\ETicaret.Application.csproj"
+            },
+            "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\Eticaret.Infrastructure\\Eticaret.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\Eticaret.Infrastructure\\Eticaret.Infrastructure.csproj"
             },
             "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\ETicaret.Persistence\\ETicaret.Persistence.csproj": {
               "projectPath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\ETicaret.Persistence\\ETicaret.Persistence.csproj"

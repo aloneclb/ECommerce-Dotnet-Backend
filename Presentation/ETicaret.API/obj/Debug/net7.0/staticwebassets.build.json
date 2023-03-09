@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "UIpLNOewunakc76Yrxev63cx9/IcBTiQq3tHD3Hgh4g=",
+  "Hash": "U8OkN1nzv+n/RiaUq/VrLcQurdhPTT2ZGWm54ASDDFE=",
   "Source": "ETicaret.API",
   "BasePath": "_content/ETicaret.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ETicaret.API\\wwwroot",
+      "Source": "ETicaret.API",
+      "ContentRoot": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Presentation\\ETicaret.API\\wwwroot\\",
+      "BasePath": "_content/ETicaret.API",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

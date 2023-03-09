@@ -10,6 +10,7 @@
         "dependencies": {
           "ETicaret.Application": "1.0.0",
           "ETicaret.Persistence": "1.0.0",
+          "Eticaret.Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.1",
           "Microsoft.EntityFrameworkCore.Design": "8.0.0-preview.1.23111.4",
           "Swashbuckle.AspNetCore": "6.4.0"
@@ -807,6 +808,14 @@
           "ETicaret.Domain.dll": {}
         }
       },
+      "Eticaret.Infrastructure/1.0.0": {
+        "dependencies": {
+          "ETicaret.Application": "1.0.0"
+        },
+        "runtime": {
+          "Eticaret.Infrastructure.dll": {}
+        }
+      },
       "ETicaret.Persistence/1.0.0": {
         "dependencies": {
           "ETicaret.Application": "1.0.0",
@@ -1359,6 +1368,11 @@
       "sha512": ""
     },
     "ETicaret.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Eticaret.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
