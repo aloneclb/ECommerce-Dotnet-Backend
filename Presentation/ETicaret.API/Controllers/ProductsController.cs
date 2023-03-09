@@ -3,6 +3,7 @@ using ETicaret.Application.Repositories.Customer;
 using ETicaret.Application.Repositories.Product;
 using ETicaret.Application.Services;
 using ETicaret.Domain.Entities;
+using ETicaret.Persistence.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace ETicaret.API.Controllers;
 [ApiController]
 public class ProductsController : ControllerBase
 {
+    private readonly ETicaretDbContext _dbContext;
     private readonly ICustomerReadRepository _customerReadRepository;
     private readonly ICustomerWriteRepository _customerWriteRepository;
     private readonly IProductWriteRepository _productWriteRepository;
@@ -20,18 +22,23 @@ public class ProductsController : ControllerBase
 
     public ProductsController(ICustomerReadRepository customerReadRepository,
         ICustomerWriteRepository customerWriteRepository, IProductWriteRepository productWriteRepository,
-        IProductReadRepository productReadRepository, IFileService imageService)
+        IProductReadRepository productReadRepository, IFileService imageService,
+        ETicaretDbContext dbContext)
     {
         _customerReadRepository = customerReadRepository;
         _customerWriteRepository = customerWriteRepository;
         _productWriteRepository = productWriteRepository;
         _productReadRepository = productReadRepository;
         _imageService = imageService;
+        _dbContext = dbContext;
     }
 
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] ProductListRequest request)
     {
+        // var x = await _dbContext.ProductImages.Include(x => x.Product).FirstAsync();
+        // Console.WriteLine(x);
+        
         // var customer = await _customerReadRepository.GetByIdAsync(new Guid("370a3f54-56e8-4cd2-d2f4-08db18641380"));
         // customer.Name = "asdasd";
         // _customerWriteRepository.Update(customer);
@@ -115,11 +122,23 @@ public class ProductsController : ControllerBase
     [Route("upload")]
     public async Task<IActionResult> Upload(List<IFormFile> images)
     {
+        var product = await _productReadRepository.GetSingleAsync(x => x.Id == Guid.Parse("b337002d-2775-4214-39eb-01db1e92354c"));
         foreach (var image in images)
         {
             var pathname = await _imageService.UploadAsync("deneme", image);
             Console.WriteLine(pathname);
+            
+            await _dbContext.ProductImages.AddAsync(new ProductImage()
+            {   
+                ProductId = product!.Id,
+                FileUrl = pathname,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            });
+            await _dbContext.SaveChangesAsync();
         }
+        // example
+        
         return Ok("ok");
     }
 }

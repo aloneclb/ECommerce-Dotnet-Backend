@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U8OkN1nzv+n/RiaUq/VrLcQurdhPTT2ZGWm54ASDDFE=",
+  "Hash": "mlt29/rFKYmYYSoqwB7fuhYw5NKnqL5ck3nDsoeaTq4=",
   "Source": "ETicaret.API",
   "BasePath": "_content/ETicaret.API",
   "Mode": "Default",
@@ -15,5 +15,23 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Presentation\\ETicaret.API\\wwwroot\\images\\example\\deneme.jpg",
+      "SourceId": "ETicaret.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Presentation\\ETicaret.API\\wwwroot\\",
+      "BasePath": "_content/ETicaret.API",
+      "RelativePath": "images/example/deneme.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\example\\deneme.jpg"
+    }
+  ]
 }

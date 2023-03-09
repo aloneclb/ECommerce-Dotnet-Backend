@@ -3,5 +3,5 @@
 public class TimeStampEntity<T> : BaseEntity<T>, ITimeStamp where T : IEquatable<T>
 {
     public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public virtual DateTime UpdatedAt { get; set; }
 }
