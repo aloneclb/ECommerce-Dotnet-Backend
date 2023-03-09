@@ -1,14 +1,14 @@
-﻿using ETicaret.Application.Abstractions;
+﻿using ETicaret.Application.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace Eticaret.Infrastructure.Services;
 
-public class ImageService : IImageService
+public class FileService : IFileService
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public ImageService(IWebHostEnvironment webHostEnvironment)
+    public FileService(IWebHostEnvironment webHostEnvironment)
     {
         _webHostEnvironment = webHostEnvironment;
     }

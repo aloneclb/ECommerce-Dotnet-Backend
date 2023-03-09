@@ -1,4 +1,4 @@
-﻿using ETicaret.Application.Abstractions;
+﻿using ETicaret.Application.Services;
 using Eticaret.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +8,6 @@ public static class InfrastructureRegistration
 {
     public static void AddInfrastructureServices(this IServiceCollection services)
     {
-        services.AddScoped<IImageService, ImageService>();
+        services.AddScoped<IFileService, FileService>();
     }
 }

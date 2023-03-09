@@ -1,7 +1,7 @@
-﻿using ETicaret.Application.Abstractions;
-using ETicaret.Application.Dtos.Product;
+﻿using ETicaret.Application.Dtos.Product;
 using ETicaret.Application.Repositories.Customer;
 using ETicaret.Application.Repositories.Product;
+using ETicaret.Application.Services;
 using ETicaret.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +16,11 @@ public class ProductsController : ControllerBase
     private readonly ICustomerWriteRepository _customerWriteRepository;
     private readonly IProductWriteRepository _productWriteRepository;
     private readonly IProductReadRepository _productReadRepository;
-    private readonly IImageService _imageService;
+    private readonly IFileService _imageService;
 
     public ProductsController(ICustomerReadRepository customerReadRepository,
         ICustomerWriteRepository customerWriteRepository, IProductWriteRepository productWriteRepository,
-        IProductReadRepository productReadRepository, IImageService imageService)
+        IProductReadRepository productReadRepository, IFileService imageService)
     {
         _customerReadRepository = customerReadRepository;
         _customerWriteRepository = customerWriteRepository;

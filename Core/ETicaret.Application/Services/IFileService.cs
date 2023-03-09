@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace ETicaret.Application.Abstractions;
+namespace ETicaret.Application.Services;
 
-public interface IImageService
+public interface IFileService
 {
     Task<string> Upload(string name, IFormFile imageFile);
     void Delete(string imageName);
