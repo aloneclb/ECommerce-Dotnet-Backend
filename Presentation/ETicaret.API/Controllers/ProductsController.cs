@@ -1,4 +1,5 @@
-﻿using ETicaret.Application.Dtos.Product;
+﻿using ETicaret.Application.Abstractions.Storage;
+using ETicaret.Application.Dtos.Product;
 using ETicaret.Application.Repositories.Customer;
 using ETicaret.Application.Repositories.Product;
 using ETicaret.Application.Services;
@@ -17,20 +18,25 @@ public class ProductsController : ControllerBase
     private readonly ICustomerReadRepository _customerReadRepository;
     private readonly ICustomerWriteRepository _customerWriteRepository;
     private readonly IProductWriteRepository _productWriteRepository;
-    private readonly IProductReadRepository _productReadRepository;
-    private readonly IFileService _imageService;
 
-    public ProductsController(ICustomerReadRepository customerReadRepository,
-        ICustomerWriteRepository customerWriteRepository, IProductWriteRepository productWriteRepository,
-        IProductReadRepository productReadRepository, IFileService imageService,
-        ETicaretDbContext dbContext)
+    private readonly IProductReadRepository _productReadRepository;
+
+    // private readonly IFileService _imageService;
+    private readonly IStorageService _storageService;
+
+    public ProductsController(
+        ICustomerReadRepository customerReadRepository,
+        ICustomerWriteRepository customerWriteRepository, 
+        IProductWriteRepository productWriteRepository,
+        IProductReadRepository productReadRepository, 
+        ETicaretDbContext dbContext, IStorageService storageService)
     {
         _customerReadRepository = customerReadRepository;
         _customerWriteRepository = customerWriteRepository;
         _productWriteRepository = productWriteRepository;
         _productReadRepository = productReadRepository;
-        _imageService = imageService;
         _dbContext = dbContext;
+        _storageService = storageService;
     }
 
     [HttpGet]
@@ -38,7 +44,7 @@ public class ProductsController : ControllerBase
     {
         // var x = await _dbContext.ProductImages.Include(x => x.Product).FirstAsync();
         // Console.WriteLine(x);
-        
+
         // var customer = await _customerReadRepository.GetByIdAsync(new Guid("370a3f54-56e8-4cd2-d2f4-08db18641380"));
         // customer.Name = "asdasd";
         // _customerWriteRepository.Update(customer);
@@ -122,14 +128,16 @@ public class ProductsController : ControllerBase
     [Route("upload")]
     public async Task<IActionResult> Upload(List<IFormFile> images)
     {
-        var product = await _productReadRepository.GetSingleAsync(x => x.Id == Guid.Parse("b337002d-2775-4214-39eb-01db1e92354c"));
+        var product =
+            await _productReadRepository.GetSingleAsync(x =>
+                x.Id == Guid.Parse("b337002d-2775-4214-39eb-01db1e92354c"));
         foreach (var image in images)
         {
-            var pathname = await _imageService.UploadAsync("deneme", image);
+            var pathname = await _storageService.UploadAsync("deneme", image);
             Console.WriteLine(pathname);
-            
+
             await _dbContext.ProductImages.AddAsync(new ProductImage()
-            {   
+            {
                 ProductId = product!.Id,
                 FileUrl = pathname,
                 CreatedAt = DateTime.UtcNow,
@@ -138,7 +146,7 @@ public class ProductsController : ControllerBase
             await _dbContext.SaveChangesAsync();
         }
         // example
-        
+
         return Ok("ok");
     }
 }

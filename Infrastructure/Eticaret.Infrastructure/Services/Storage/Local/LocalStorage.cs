@@ -1,17 +1,15 @@
-﻿using ETicaret.Application.Services;
+﻿using ETicaret.Application.Abstractions.Storage.Local;
 using Eticaret.Infrastructure.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-namespace Eticaret.Infrastructure.Services;
+namespace Eticaret.Infrastructure.Services.Storage.Local;
 
-public class FileService : IFileService
+public class LocalStorage : ILocalStorage
 {
-    // Todo: Log
-    // Todo: Servisi uyarıcı exception mekanizması
     private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public FileService(IWebHostEnvironment webHostEnvironment)
+    public LocalStorage(IWebHostEnvironment webHostEnvironment)
     {
         _webHostEnvironment = webHostEnvironment;
     }
@@ -19,9 +17,8 @@ public class FileService : IFileService
     private string wwwroot => _webHostEnvironment.WebRootPath;
 
     private const string ImgFolder = "images";
-    // private const string UserImagesFolder = "user-images";
 
-    public async Task<string> UploadAsync(string name, IFormFile imageFile)
+    public async Task<string> UploadAsync(string fileName, IFormFile imageFile)
     {
         var pathToSaveFolder = $"{wwwroot}/{ImgFolder}/example";
 
@@ -31,7 +28,7 @@ public class FileService : IFileService
 
         var fileExtensions = Path.GetExtension(imageFile.FileName); // Yüklenen Dosyanın Türü
 
-        var pathAndName = await FileRenameAsync(pathToSaveFolder, name, fileExtensions);
+        var pathAndName = await FileRenameAsync(pathToSaveFolder, fileName, fileExtensions);
 
         await using var stream = new FileStream(pathAndName, FileMode.Create, FileAccess.Write, FileShare.None,
             1024 * 1024, false);
@@ -72,10 +69,24 @@ public class FileService : IFileService
         return fullFilePath;
     }
 
-    public void Delete(string imageName)
+
+    public async Task DeleteAsync(string fileName)
     {
-        var path = Path.Combine($"{wwwroot}/{ImgFolder}/{imageName}");
-        if (File.Exists(path))
-            File.Delete(path);
+        await Task.Run(() =>
+        {
+            var path = Path.Combine($"{wwwroot}/{ImgFolder}/{fileName}");
+            if (File.Exists(path))
+                File.Delete(path);
+        });
+    }
+
+    public List<string> GetAllFiles()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool HasFile(string fileName)
+    {
+        throw new NotImplementedException();
     }
 }

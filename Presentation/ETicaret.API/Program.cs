@@ -1,5 +1,6 @@
 using ETicaret.Application;
 using Eticaret.Infrastructure;
+using Eticaret.Infrastructure.Services.Storage.Local;
 using ETicaret.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,13 +18,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+
 // Application Register
 builder.Services.AddApplicationServices();
 // Persistence Register
 builder.Services.AddPersistanceServices();
 // Insfrastructure Register
 builder.Services.AddInfrastructureServices();
-
+builder.Services.AddStorage<LocalStorage>();
 
 var app = builder.Build();
 
