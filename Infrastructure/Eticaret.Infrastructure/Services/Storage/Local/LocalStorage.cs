@@ -20,7 +20,7 @@ public class LocalStorage : ILocalStorage
 
     public async Task<string> UploadAsync(string fileName, IFormFile imageFile)
     {
-        var pathToSaveFolder = $"{wwwroot}/{ImgFolder}/example";
+        var pathToSaveFolder = $"{wwwroot}\\{ImgFolder}\\example";
 
         // Resimlerin Kaydedileceği dosya yok ise oluşturuyoruz.
         if (!Directory.Exists(pathToSaveFolder))
@@ -42,7 +42,7 @@ public class LocalStorage : ILocalStorage
     {
         var newFileFullPath = await Task.Run(async () =>
         {
-            var newFileFullPath = await RenameFileName(filePath, fileName, extension); // wwwroot/example/imagename.jpg
+            var newFileFullPath = await RenameFileName(filePath, fileName, extension); // wwwroot\example\imagename.jpg
             var imageCount = 0;
 
             while (File.Exists(newFileFullPath))
@@ -62,8 +62,8 @@ public class LocalStorage : ILocalStorage
         var fullFilePath = await Task.Run(() =>
         {
             var newFileName = NameChanger.ReplaceInvalidChars(fileName); // urunismi
-            var newFilePath = Path.Combine(filePath, newFileName); // wwwroot/example/urunismi
-            var newFileFullPath = $"{newFilePath}{extension}"; // wwwroot/example/urunismi.jpg
+            var newFilePath = Path.Combine(filePath, newFileName); // wwwroot\example\urunismi
+            var newFileFullPath = $"{newFilePath}{extension}"; // wwwroot\example\urunismi.jpg
             return Task.FromResult(newFileFullPath);
         });
         return fullFilePath;
@@ -74,7 +74,7 @@ public class LocalStorage : ILocalStorage
     {
         await Task.Run(() =>
         {
-            var path = Path.Combine($"{wwwroot}/{ImgFolder}/{fileName}");
+            var path = Path.Combine($"{wwwroot}\\{ImgFolder}\\{fileName}");
             if (File.Exists(path))
                 File.Delete(path);
         });
@@ -87,6 +87,6 @@ public class LocalStorage : ILocalStorage
 
     public bool HasFile(string fileName)
     {
-        throw new NotImplementedException();
+        return File.Exists(fileName);
     }
 }
