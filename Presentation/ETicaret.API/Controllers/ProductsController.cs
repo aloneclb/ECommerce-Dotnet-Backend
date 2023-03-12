@@ -1,8 +1,6 @@
-﻿using ETicaret.Application.Abstractions.Storage;
-using ETicaret.Application.Features.Product.Requests;
+﻿using ETicaret.Application.Features.Product.Requests;
+using ETicaret.Application.Features.ProductImage.Requests;
 using ETicaret.Application.Repositories.Product;
-using ETicaret.Domain.Entities;
-using ETicaret.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,28 +10,17 @@ namespace ETicaret.API.Controllers;
 [ApiController]
 public class ProductsController : ControllerBase
 {
-    private readonly ETicaretDbContext _dbContext;
     private readonly IProductWriteRepository _productWriteRepository;
-
     private readonly IProductReadRepository _productReadRepository;
-
-    // private readonly IFileService _imageService;
-    private readonly IStorageService _storageService;
-
-    // Mediatr
-    private readonly IMediator _mediator;
+    private readonly IMediator _mediator; // Mediatr
 
     public ProductsController(
         IProductWriteRepository productWriteRepository,
         IProductReadRepository productReadRepository,
-        ETicaretDbContext dbContext,
-        IStorageService storageService,
         IMediator mediator)
     {
         _productWriteRepository = productWriteRepository;
         _productReadRepository = productReadRepository;
-        _dbContext = dbContext;
-        _storageService = storageService;
         _mediator = mediator;
     }
 
@@ -74,27 +61,17 @@ public class ProductsController : ControllerBase
 
     [HttpPost]
     [Route("upload")]
-    public async Task<IActionResult> Upload(List<IFormFile> images)
+    public async Task<IActionResult> Upload(List<IFormFile> images, Guid id)
     {
-        var product =
-            await _productReadRepository.GetSingleAsync(x =>
-                x.Id == Guid.Parse("b337002d-2775-4214-39eb-01db1e92354c"));
-        foreach (var image in images)
+        var request = new AddImageForProductRequest()
         {
-            var pathname = await _storageService.UploadAsync("deneme", image);
-            Console.WriteLine(pathname);
+            Id = id,
+            Images = images
+        };
+        var result = await _mediator.Send(request);
 
-            await _dbContext.ProductImages.AddAsync(new ProductImage()
-            {
-                ProductId = product!.Id,
-                FileUrl = pathname,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            });
-            await _dbContext.SaveChangesAsync();
-        }
-        // example
-
-        return Ok("ok");
+        return result
+            ? Ok("başarılı")
+            : BadRequest("başarısız");
     }
 }
