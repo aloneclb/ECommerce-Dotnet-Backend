@@ -42,25 +42,17 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest request) //([FromQuery] ProductListRequest request)
+    public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest request)
     {
         var response = await _mediator.Send(request);
         return Ok(response);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ProductCreateRequest request)
+    public async Task<IActionResult> Create(ProductCreateCommandRequest request)
     {
-        var product = new Product()
-        {
-            Name = request.Name,
-            Price = request.Price,
-            Stock = request.Stock
-        };
-        var result = await _productWriteRepository.AddAsync(product);
-        await _productWriteRepository.SaveChanges();
-
-        return result ? Ok() : BadRequest();
+        var response = await _mediator.Send(request);
+        return response.Result ? Ok() : BadRequest();
     }
 
     [HttpDelete]
