@@ -3,7 +3,6 @@ using ETicaret.Application.Features.Product.Requests;
 using ETicaret.Application.Features.Product.Responses;
 using ETicaret.Application.Repositories.Product;
 using ETicaret.Application.Repositories.ProductImages;
-using ETicaret.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +23,7 @@ public class GetProductByIdHandler : IRequestHandler<GetProductByIdRequest, GetP
 
     public async Task<GetProductByIdResponse> Handle(GetProductByIdRequest request, CancellationToken cancellationToken)
     {
+        // Left Join IEnum'da atama yapiyor
         // var product = await _productReadRepository
         //     .AsQueryable()
         //     .Include(x => x.Images)
@@ -38,6 +38,8 @@ public class GetProductByIdHandler : IRequestHandler<GetProductByIdRequest, GetP
         //     })
         //     .SingleOrDefaultAsync(x => x.Id == request.Id, cancellationToken: cancellationToken);
 
+
+        // Outer Apply
         var examProduct = await (
             from prod in _productReadRepository.Table
             where prod.Id == request.Id
@@ -62,15 +64,16 @@ public class GetProductByIdHandler : IRequestHandler<GetProductByIdRequest, GetP
         //         img
         //     }).FirstAsync(cancellationToken: cancellationToken);
 
-        var query = from prod in _productReadRepository.Table
-            join img in _productImageReadRepository.Table
-                on prod.Id equals img.ProductId into grouping
-            from img in grouping.DefaultIfEmpty()
-            select new
-            {
-                prod,
-                img
-            };
+        // Left Join
+        // var query = from prod in _productReadRepository.Table
+        //     join img in _productImageReadRepository.Table
+        //         on prod.Id equals img.ProductId into grouping
+        //     from img in grouping.DefaultIfEmpty()
+        //     select new
+        //     {
+        //         prod,
+        //         img
+        //     };
 
 
         return new GetProductByIdResponse()
