@@ -104,3 +104,5 @@ C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.AP
 C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\ETicaret.API.staticwebassets.runtime.json
 C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\Eticaret.Infrastructure.dll
 C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\Eticaret.Infrastructure.pdb
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\MediatR.dll
+C:\Users\tunah\Masaüstü\.Net WebAPI Projects\ETicaret\Presentation\ETicaret.API\bin\Debug\net7.0\MediatR.Contracts.dll

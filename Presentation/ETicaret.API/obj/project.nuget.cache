@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2OccecsI3yKsDjqbnTS4fh0UzL2QBCBUNM8ZXCgycYSfZZztHjNvdRSmzbQorhk4TEz1xexFmCoLlYAiio7UWw==",
+  "dgSpecHash": "Bq+MmoI/VFNZwhn+ytIZcm4qgCNxxaq/JFUQpXCxuZN3pGs1zfI6cFF4FsNGMixY1dG1vuEzpRP5YI1dTQinOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Presentation\\ETicaret.API\\ETicaret.API.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.1\\microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

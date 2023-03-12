@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "ZDlmtb0e/B2kPOWaUC8LG9SUjkvn1nADTq/8miSl7233vVqlKfN+A4nOwyeaAXRVsM03lv6X9ghwa5WnVlKTkA==",
+  "dgSpecHash": "rFdIyx4M6F4NAaK2JggOfrdWsucWR8OObRu0LK2rMsuY2gTY0XyXkaS3bQrI6RFIiscG4s5NR0oeZ9ftwGd61g==",
   "success": true,
   "projectFilePath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\Eticaret.Infrastructure\\Eticaret.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\tunah\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.8.0.0-preview.1.23111.4.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.abstractions.8.0.0-preview.1.23111.4.nupkg.sha512",
     "C:\\Users\\tunah\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.analyzers.8.0.0-preview.1.23111.4.nupkg.sha512",
