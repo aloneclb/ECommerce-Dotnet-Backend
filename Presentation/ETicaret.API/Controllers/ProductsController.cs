@@ -1,14 +1,10 @@
 ﻿using ETicaret.Application.Abstractions.Storage;
-using ETicaret.Application.Dtos.Product;
 using ETicaret.Application.Features.Product.Requests;
-using ETicaret.Application.Repositories.Customer;
 using ETicaret.Application.Repositories.Product;
-using ETicaret.Application.Services;
 using ETicaret.Domain.Entities;
 using ETicaret.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ETicaret.API.Controllers;
 
@@ -46,6 +42,14 @@ public class ProductsController : ControllerBase
     {
         var response = await _mediator.Send(request);
         return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("{Id:required}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        var response = await _mediator.Send(new GetProductByIdRequest { Id = id });
+        return Ok(response.Product);
     }
 
     [HttpPost]
