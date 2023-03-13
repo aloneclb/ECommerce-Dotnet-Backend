@@ -17,6 +17,9 @@ public class GetAllProductQueryHandler : IRequestHandler<GetAllProductQueryReque
 
     public async Task<GetAllProductQueryResponse> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
     {
+        // Todo: Pagination hata verebilir. Total Counta göre hesaplama yapıp veriyi o şekilde getirmek gerekir.
+        // total count >= (pagesize * page olmalı) + pagesize 
+        // yukarıdaki şart her zaman sağlanmalı
         var products = await _productReadRepository.GetWhere(x => true)
                     .Select(p => new
                     {

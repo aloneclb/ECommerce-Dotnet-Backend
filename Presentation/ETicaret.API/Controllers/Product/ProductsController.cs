@@ -4,7 +4,7 @@ using ETicaret.Application.Repositories.Product;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ETicaret.API.Controllers;
+namespace ETicaret.API.Controllers.Product;
 
 [Route("api/[controller]")]
 [ApiController]
