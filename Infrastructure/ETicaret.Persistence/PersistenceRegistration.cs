@@ -2,6 +2,7 @@
 using ETicaret.Application.Repositories.Order;
 using ETicaret.Application.Repositories.Product;
 using ETicaret.Application.Repositories.ProductImages;
+using ETicaret.Domain.Entities.Identity;
 using ETicaret.Persistence.Contexts;
 using ETicaret.Persistence.ExecutionStrategies;
 using ETicaret.Persistence.Repositories.Customer;
@@ -29,6 +30,7 @@ public static class PersistenceRegistration
                 ));
             });
         });
+        services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ETicaretDbContext>();
 
         // Repositories
         services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();

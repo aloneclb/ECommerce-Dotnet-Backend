@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <Folder Include="Features\ProductImage\Responses" />
+      <Folder Include="Features\User\Queries" />
     </ItemGroup>
 
 </Project>

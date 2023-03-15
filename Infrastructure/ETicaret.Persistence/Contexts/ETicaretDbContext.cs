@@ -1,10 +1,12 @@
 ﻿using ETicaret.Domain.Entities;
 using ETicaret.Domain.Entities.Base;
+using ETicaret.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETicaret.Persistence.Contexts;
 
-public class ETicaretDbContext : DbContext
+public class ETicaretDbContext : IdentityDbContext<AppUser, AppRole, Guid>
 {
     public ETicaretDbContext(DbContextOptions options) : base(options)
     {
