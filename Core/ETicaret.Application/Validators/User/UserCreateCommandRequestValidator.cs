@@ -10,5 +10,6 @@ public class UserCreateCommandRequestValidator : AbstractValidator<UserCreateCom
         RuleFor(x => x.Email).EmailAddress().NotEmpty().NotNull();
         RuleFor(x => x.NameSurname).NotEmpty().NotNull();
         RuleFor(x => x.Password).NotNull().NotEmpty();
+        RuleFor(x => x.Password).Equal(x => x.PasswordConfirm);
     }
 }

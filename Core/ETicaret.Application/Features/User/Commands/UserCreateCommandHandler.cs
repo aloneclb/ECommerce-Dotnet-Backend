@@ -1,4 +1,5 @@
-﻿using ETicaret.Application.Exceptions;
+﻿using ETicaret.Application.Abstractions.Services;
+using ETicaret.Application.Exceptions;
 using ETicaret.Application.Features.User.Requests;
 using ETicaret.Application.Features.User.Responses;
 using ETicaret.Domain.Entities.Identity;
@@ -9,17 +10,17 @@ namespace ETicaret.Application.Features.User.Commands;
 
 public class UserCreateCommandHandler : IRequestHandler<UserCreateCommandRequest, UserCreateCommandResponse>
 {
-    private readonly UserManager<AppUser> _userManager;
+    private readonly IUserService _userService;
 
-    public UserCreateCommandHandler(UserManager<AppUser> userManager)
+    public UserCreateCommandHandler(IUserService userService)
     {
-        _userManager = userManager;
+        _userService = userService;
     }
 
     public async Task<UserCreateCommandResponse> Handle(UserCreateCommandRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _userManager.CreateAsync(new AppUser()
+        var result = await _userService.CreateAsync(new AppUser()
         {
             Email = request.Email,
             NameSurname = request.NameSurname,
@@ -28,12 +29,9 @@ public class UserCreateCommandHandler : IRequestHandler<UserCreateCommandRequest
 
         var response = new UserCreateCommandResponse()
         {
-            Success = result.Succeeded,
+            Success = result,
+            Message = result ? "Başarılı" : "Başarısız"
         };
-        if (result.Succeeded)
-            response.Message = "Başarılı";
-        else
-            response.Message = "Başarısız";
 
         return response;
     }

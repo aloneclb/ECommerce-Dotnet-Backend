@@ -1,4 +1,5 @@
-﻿using ETicaret.Application.Repositories.Customer;
+﻿using ETicaret.Application.Abstractions.Services;
+using ETicaret.Application.Repositories.Customer;
 using ETicaret.Application.Repositories.Order;
 using ETicaret.Application.Repositories.Product;
 using ETicaret.Application.Repositories.ProductImages;
@@ -9,6 +10,7 @@ using ETicaret.Persistence.Repositories.Customer;
 using ETicaret.Persistence.Repositories.Order;
 using ETicaret.Persistence.Repositories.Product;
 using ETicaret.Persistence.Repositories.ProductImage;
+using ETicaret.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -41,5 +43,8 @@ public static class PersistenceRegistration
         services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
         services.AddScoped<IProductImageReadRepository, ProductImageReadRepository>();
         services.AddScoped<IProductImageWriteRepository, ProductImageWriteRepository>();
+        
+        //Services
+        services.AddScoped<IUserService, UserService>();
     }
 }
