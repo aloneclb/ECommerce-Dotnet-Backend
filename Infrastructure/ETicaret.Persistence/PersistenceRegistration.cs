@@ -46,5 +46,6 @@ public static class PersistenceRegistration
         
         //Services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
     }
 }

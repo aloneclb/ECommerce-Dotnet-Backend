@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Text;
 using ETicaret.Application;
 using Eticaret.Infrastructure;
@@ -34,6 +35,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = builder.Configuration["JWTToken:Audience"],
             ValidIssuer = builder.Configuration["JWTToken:Issuer"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTToken:SecurityKey"]!)),
+            LifetimeValidator = (notBefore, expires, securityToken, validationParameters) => expires != null && expires > DateTime.UtcNow,
+            // süresini kontrol etme delegate'i
+            
         };
     });
 

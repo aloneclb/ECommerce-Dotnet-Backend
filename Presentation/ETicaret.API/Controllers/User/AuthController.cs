@@ -1,4 +1,5 @@
-﻿using ETicaret.Application.Features.User.Requests;
+﻿using ETicaret.Application.Features.Auth.Requests;
+using ETicaret.Application.Features.User.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +9,11 @@ namespace ETicaret.API.Controllers.User;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize(AuthenticationSchemes = "Admin")]
-public class UsersController : ControllerBase
+public class AuthController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public UsersController(IMediator mediator)
+    public AuthController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -34,5 +35,14 @@ public class UsersController : ControllerBase
     {
         var result = await _mediator.Send(request);
         return Ok(result.Token);
+    }
+
+    [HttpPost]
+    [Route("refresh/")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Refresh(RefreshTokenCommandRequest input)
+    {
+        var result = await _mediator.Send(input);
+        return Ok(result);
     }
 }
