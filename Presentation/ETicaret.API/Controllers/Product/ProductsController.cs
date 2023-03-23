@@ -27,6 +27,7 @@ public class ProductsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest request)
     {
+        // throw new Exception("deneme");
         var response = await _mediator.Send(request);
         return Ok(response);
     }

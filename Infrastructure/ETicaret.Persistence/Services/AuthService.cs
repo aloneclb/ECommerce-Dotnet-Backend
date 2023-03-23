@@ -40,7 +40,7 @@ public class AuthService : IAuthService
         if (!result.Succeeded)
             throw new NotFoundUserException();
 
-        return _tokenHandler.CreateAccessToken(claims, 10, 60);
+        return _tokenHandler.CreateAccessToken(claims, 15, 30);
     }
 
     public TokenDto RefreshAsync(string refreshToken)

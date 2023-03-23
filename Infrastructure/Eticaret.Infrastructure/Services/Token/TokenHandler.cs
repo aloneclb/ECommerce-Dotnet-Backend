@@ -27,7 +27,7 @@ public class TokenHandler : ITokenHandler
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
         // Token geçerlilik süresini belirtiyoruz.
-        token.AccessTokenExpiration = DateTime.UtcNow.AddSeconds(accessMinute);
+        token.AccessTokenExpiration = DateTime.UtcNow.AddMinutes(accessMinute);
         token.RefreshTokenExpiration = DateTime.UtcNow.AddMinutes(refreshMinute);
 
         // Tokeni oluşturuyoruz.
