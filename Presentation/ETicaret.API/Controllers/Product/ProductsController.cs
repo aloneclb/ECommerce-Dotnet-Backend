@@ -2,12 +2,14 @@
 using ETicaret.Application.Features.ProductImage.Requests;
 using ETicaret.Application.Repositories.Product;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaret.API.Controllers.Product;
 
 [Route("api/[controller]")]
 [ApiController]
+// [Authorize(AuthenticationSchemes = "Admin")]
 public class ProductsController : ControllerBase
 {
     private readonly IProductWriteRepository _productWriteRepository;
@@ -27,6 +29,12 @@ public class ProductsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest request)
     {
+        // if (User.Identity is { IsAuthenticated: true })
+        // {
+        //     var email = User.Claims.FirstOrDefault(x => x.Type == "email")?.Value;
+        //     Console.WriteLine(email);
+        // }
+
         // throw new Exception("deneme");
         var response = await _mediator.Send(request);
         return Ok(response);

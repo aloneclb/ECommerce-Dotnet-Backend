@@ -15,7 +15,8 @@ public class AuthService : IAuthService
     private readonly SignInManager<AppUser> _signInManager;
     private readonly ITokenHandler _tokenHandler;
 
-    public AuthService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenHandler tokenHandler)
+    public AuthService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+        ITokenHandler tokenHandler)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -29,7 +30,7 @@ public class AuthService : IAuthService
 
         if (user is null)
             throw new NotFoundUserException();
-        
+
         var claims = new Claim[]
         {
             new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
@@ -48,32 +49,32 @@ public class AuthService : IAuthService
         // Kullanıcıyı bul
         var principal = _tokenHandler.GetPrincipalFromExpiredToken(refreshToken);
         if (principal is null)
-            throw new NotImplementedException();
+            throw new Exception("Kullanıcı kimliği belirlenemedi. Lütfen tekrar giriş yapınız.");
 
-        var email = principal.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+        var email = principal.Claims
+            .FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email)?.Value;
 
         foreach (var claim in principal.Claims)
         {
             Console.WriteLine(claim.Type);
             Console.WriteLine(claim.Value);
         }
-        
-        
+
         if (string.IsNullOrEmpty(email))
-            throw new NotImplementedException();
-        
-        
-        var userId = principal.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
+            throw new Exception("Kullanıcı kimliği belirlenemedi. Lütfen tekrar giriş yapınız.");
+
+        var userId = principal.Claims
+            .FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub)
+            ?.Value;
         if (string.IsNullOrEmpty(userId))
-            throw new NotImplementedException();
-        
+            throw new Exception("Kullanıcı kimliği belirlenemedi. Lütfen tekrar giriş yapınız.");
+
         var claims = new Claim[]
         {
             new(JwtRegisteredClaimNames.Sub, userId),
             new(JwtRegisteredClaimNames.Email, email)
         };
-        
+
         return _tokenHandler.CreateAccessToken(claims, 10, 60);
     }
-
 }

@@ -2,7 +2,6 @@
 using System.Net.Mime;
 using System.Text.Json;
 using ETicaret.API.Controllers.Product;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace ETicaret.API.Middlewares;
 
@@ -25,7 +24,7 @@ public class GlobalExceptionHandlerMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogInformation(ex.Message.ToString());
+            _logger.LogError(ex, "Global Error {@Message}", ex.Message);
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.ContentType = MediaTypeNames.Application.Json;
 

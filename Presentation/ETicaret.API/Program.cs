@@ -1,16 +1,19 @@
 using System.Data;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using ETicaret.API.Extensions;
 using ETicaret.Application;
 using Eticaret.Infrastructure;
 using Eticaret.Infrastructure.Services.Storage.Local;
 using ETicaret.Persistence;
+using Eticaret.WebSocket;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.MSSqlServer;
+using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(
         .AllowAnyHeader()
         .AllowAnyOrigin()
         .AllowAnyMethod()
+        .AllowCredentials()
 ));
 
 builder.Services.AddControllers();
@@ -46,10 +50,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // Be
             LifetimeValidator = (notBefore, expires, securityToken, validationParameters) =>
                 expires != null && expires > DateTime.UtcNow,
             // süresini kontrol etme delegate'i
-            
         };
     });
-
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 // Serilog
 Logger log = new LoggerConfiguration()
@@ -58,19 +61,20 @@ Logger log = new LoggerConfiguration()
     // // .WriteTo.Seq("server url") Seq 
     .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("SQLServer"),
         tableName: "logs",
-        autoCreateSqlTable: true
-        // columnOptions: new ColumnOptions
-        // {
-        //     AdditionalColumns = new List<SqlColumn>()
-        //     {
-        //         new SqlColumn()
-        //             { ColumnName = "email", DataType = SqlDbType.VarChar, AllowNull = true, PropertyName = "email" }
-        //     } burası işin içine girince logg atılmıyor veritabanına bazen ?
-        // }
-        )
+        autoCreateSqlTable: true,
+        columnOptions: new ColumnOptions
+        {
+            AdditionalColumns = new List<SqlColumn>()
+            {
+                new SqlColumn()
+                    { ColumnName = "email", DataType = SqlDbType.VarChar, AllowNull = true, PropertyName = "email" }
+            } //burası işin içine girince logg atılmıyor veritabanına bazen ?
+        }
+    )
     .Enrich.FromLogContext()
     .MinimumLevel.Information()
     .CreateLogger();
+
 builder.Host.UseSerilog(log);
 
 
@@ -81,6 +85,8 @@ builder.Services.AddPersistanceServices();
 // Insfrastructure Register
 builder.Services.AddInfrastructureServices();
 builder.Services.AddStorage<LocalStorage>();
+
+builder.Services.AddWebSocketServices();
 
 var app = builder.Build();
 
@@ -93,7 +99,6 @@ if (app.Environment.IsDevelopment())
 
 // Global exception middleware
 // app.UseGlobalExceptionHandler(app.Services.GetRequiredService<ILogger<Program>>());
-app.UseGlobalExceptionHandler();
 
 // For wwwroot
 app.UseStaticFiles();
@@ -112,16 +117,16 @@ app.UseAuthorization();
 // Serilog'da log context bilgilerini besleme
 app.Use(async (context, next) =>
 {
-    var email = context.User?.Identity?.IsAuthenticated != null || true
-        ? context.User.Claims
-            .FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value
-        : null;
+    var email = "";
+    if (context.User.Identity is { IsAuthenticated: true })
+        email = context.User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email)?.Value;
 
     LogContext.PushProperty("email", email);
     await next();
 });
+app.UseGlobalExceptionHandler();
 
 app.MapControllers();
-
+app.MapHubs();
 
 app.Run();

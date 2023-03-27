@@ -2134,6 +2134,22 @@
         "runtime": {
           "bin/placeholder/ETicaret.Persistence.dll": {}
         }
+      },
+      "Eticaret.WebSocket/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ETicaret.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Eticaret.WebSocket.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Eticaret.WebSocket.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -5313,6 +5329,11 @@
       "type": "project",
       "path": "../../Infrastructure/ETicaret.Persistence/ETicaret.Persistence.csproj",
       "msbuildProject": "../../Infrastructure/ETicaret.Persistence/ETicaret.Persistence.csproj"
+    },
+    "Eticaret.WebSocket/1.0.0": {
+      "type": "project",
+      "path": "../../Infrastructure/Eticaret.WebSocket/Eticaret.WebSocket.csproj",
+      "msbuildProject": "../../Infrastructure/Eticaret.WebSocket/Eticaret.WebSocket.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5320,6 +5341,7 @@
       "ETicaret.Application >= 1.0.0",
       "ETicaret.Persistence >= 1.0.0",
       "Eticaret.Infrastructure >= 1.0.0",
+      "Eticaret.WebSocket >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.4",
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.0-preview.1.23111.4",
@@ -5361,6 +5383,9 @@
             },
             "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\ETicaret.Persistence\\ETicaret.Persistence.csproj": {
               "projectPath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\ETicaret.Persistence\\ETicaret.Persistence.csproj"
+            },
+            "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\Eticaret.WebSocket\\Eticaret.WebSocket.csproj": {
+              "projectPath": "C:\\Users\\tunah\\Masaüstü\\.Net WebAPI Projects\\ETicaret\\Infrastructure\\Eticaret.WebSocket\\Eticaret.WebSocket.csproj"
             }
           }
         }
